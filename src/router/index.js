@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+// import Home from '../views/Home.vue'
 
 // const routes = [
 //   {
@@ -18,15 +18,15 @@ import Home from '../views/Home.vue'
 // ]
 
 const routes = [
-  {
-    path: '/',
-    redirect: '/home'
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home
-  }
+  // {
+  //   path: '/',
+  //   redirect: '/home'
+  // },
+  // {
+  //   path: '/home',
+  //   name: 'Home',
+  //   component: Home
+  // }
 ]
 const router = createRouter({
   history: createWebHashHistory(),
