@@ -8,9 +8,13 @@
 </template>
 
 <script>
+import request from "@/utils/request";
 export default {
   name: "App",
   setup() {
+    request("/home/category/head", "get", "").then((data) => {
+      console.log(data);
+    });
     return {};
   },
 };
