@@ -1,5 +1,5 @@
 <template>
-  <div>Home</div>
+  <div class="box">Home</div>
 </template>
 
 <script>
@@ -11,5 +11,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
+// @import "../../assets/styles/mixins.less";
+
+.box {
+  width: 100px;
+  height: 100px;
+  color: @xtxColor;
+  .hoverShadow ();
+}
 </style>
