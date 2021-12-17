@@ -1,12 +1,19 @@
 <template>
   <nav class="app-topnav">
     <ul>
-      <li>
-        <a href="javascript:;"><i class="iconfont icon-user"></i>周杰伦</a>
-      </li>
-      <li><a href="javascript:;">退出登录</a></li>
-      <li><a href="javascript:;">请先登录</a></li>
-      <li><a href="javascript:;">免费注册</a></li>
+      <template v-if="profile.token">
+        <li>
+          <a href="javascript:;"
+            ><i class="iconfont icon-user"></i>{{ profile.account }}</a
+          >
+        </li>
+        <li><a href="javascript:;">退出登录</a></li>
+      </template>
+      <template v-else>
+        <li><a href="javascript:;">请先登录</a></li>
+        <li><a href="javascript:;">免费注册</a></li>
+      </template>
+
       <li><a href="javascript:;">我的订单</a></li>
       <li><a href="javascript:;">会员中心</a></li>
       <li><a href="javascript:;">帮助中心</a></li>
@@ -19,10 +26,16 @@
 </template>
 
 <script>
+import { computed } from "vue";
+import { useStore } from "vuex";
 export default {
   name: "AppTopnav",
   setup() {
-    return {};
+    const store = useStore();
+    const profile = computed(() => {
+      return store.state.user.profile;
+    });
+    return { profile };
   },
 };
 </script>
