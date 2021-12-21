@@ -1,7 +1,8 @@
 <template>
-  <div class="home-category">
+  <div class="home-category" @mouseleave="categoryId = null">
     <ul class="menu">
       <li
+        :class="{ active: categoryId === item.id }"
         v-for="item in menuList"
         :key="item.id"
         @mouseenter="categoryId = item.id"
@@ -36,6 +37,22 @@
           </RouterLink>
         </li>
       </ul>
+      <ul
+        v-if="currCategory && currCategory.brands && currCategory.brands.length"
+      >
+        <li class="brand" v-for="item in currCategory.brands" :key="item.id">
+          <RouterLink to="/">
+            <img :src="item.picture" alt="" />
+            <div class="info">
+              <p class="place">
+                <i class="iconfont icon-dingwei"></i>{{ item.place }}
+              </p>
+              <p class="name ellipsis">{{ item.name }}</p>
+              <p class="desc ellipsis-2">{{ item.desc }}</p>
+            </div>
+          </RouterLink>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -43,6 +60,7 @@
 <script>
 import { useStore } from "vuex";
 import { reactive, computed, ref } from "vue";
+import { findBrand } from "@/api/home.js";
 export default {
   name: "HomeCategory",
   // 1. 获取vuex的一级分类，并且只需要两个二级分类
@@ -54,6 +72,7 @@ export default {
       id: "brand",
       name: "品牌",
       children: [{ id: "brand-chilren", name: "品牌推荐" }],
+      brands: [],
     });
 
     const store = useStore();
@@ -74,6 +93,9 @@ export default {
     const currCategory = computed(() => {
       return menuList.value.find((item) => item.id === categoryId.value);
     });
+    findBrand().then((data) => {
+      brand.brands = data.result;
+    });
     return { menuList, categoryId, currCategory };
   },
 };
@@ -91,7 +113,8 @@ export default {
       padding-left: 40px;
       height: 50px;
       line-height: 50px;
-      &:hover {
+      &:hover,
+      &.active {
         background: @xtxColor;
       }
       a {
@@ -176,6 +199,25 @@ export default {
 &:hover {
   .layer {
     display: block;
+  }
+}
+
+li.brand {
+  height: 180px;
+  a {
+    align-items: flex-start;
+    img {
+      width: 120px;
+      height: 160px;
+    }
+    .info {
+      p {
+        margin-top: 8px;
+      }
+      .place {
+        color: #999;
+      }
+    }
   }
 }
 </style>
