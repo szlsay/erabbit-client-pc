@@ -4,17 +4,7 @@
       <h1 class="logo">
         <router-link to="/">小鱼鲜</router-link>
       </h1>
-      <ul class="navs">
-        <li><a href="#">美食</a></li>
-        <li><a href="#">餐厨</a></li>
-        <li><a href="#">艺术</a></li>
-        <li><a href="#">电器</a></li>
-        <li><a href="#">居家</a></li>
-        <li><a href="#">洗护</a></li>
-        <li><a href="#">孕婴</a></li>
-        <li><a href="#">服装</a></li>
-        <li><a href="#">杂货</a></li>
-      </ul>
+      <app-header-nav></app-header-nav>
       <div class="search">
         <i class="iconfont icon-search"></i>
         <input type="text" placeholder="搜一搜" />
@@ -30,7 +20,11 @@
 </template>
 
 <script>
+import AppHeaderNav from "./app-header-nav.vue";
 export default {
+  components: {
+    AppHeaderNav,
+  },
   name: "AppHeader",
   setup() {
     return {};
