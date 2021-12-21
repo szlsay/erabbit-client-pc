@@ -15,6 +15,16 @@ export default {
   mutations: {
     setList(state, headCategory) {
       state.list = headCategory
+    },
+    // 修改当前一级分类下的open数据为true
+    show(state, item) {
+      const category = state.list.find(category => category.id === item.id)
+      category.open = true
+    },
+    // 修改当前一级分类下的open数据为false
+    hide(state, item) {
+      const category = state.list.find(category => category.id === item.id)
+      category.open = false
     }
   },
   // 需要向后台加载数据，所以需要actions函数获取数据
@@ -23,6 +33,9 @@ export default {
       const { result } = await findAllCategory()
       console.log(result)
         // 获取数据成功，提交mutations进行数据修改
+      result.forEach(item => {
+        item.open = false
+      })
       commit('setList', result)
     }
   }
