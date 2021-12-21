@@ -1,5 +1,5 @@
 <template>
-  <div>Sub-Category</div>
+  <div>Sub-Category--{{ $route.params.id }}</div>
 </template>
 
 <script>
