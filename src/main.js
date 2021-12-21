@@ -4,4 +4,5 @@ import router from './router'
 import store from './store'
 import 'normalize.css'
 import '@/assets/styles/common.less'
-createApp(App).use(store).use(router).mount('#app')
+import ui from './components/library'
+createApp(App).use(store).use(router).use(ui).mount('#app')
