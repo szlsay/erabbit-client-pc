@@ -21,22 +21,23 @@
         </ul>
       </div>
       <!-- 分类关联商品 -->
-      <div class="ref-goods">
+      <div class="ref-goods" v-for="item in subList" :key="item.id">
         <div class="head">
-          <h3>- 海鲜 -</h3>
-          <p class="tag">温暖柔软，品质之选</p>
+          <h3>-{{ item.name }}-</h3>
+          <p class="tag">{{ item.desc }}</p>
           <XtxMore />
         </div>
         <div class="body">
-          <GoodsItem v-for="i in 5" :key="i" />
+          <GoodsItem v-for="g in item.goods" :key="g.id" :goods="g" />
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { findBanner } from "@/api/home";
+import { findTopCategory } from "@/api/category";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import GoodsItem from "./components/goods-item.vue";
@@ -61,7 +62,22 @@ export default {
       if (item) cate = item;
       return cate;
     });
-    return { sliders, topCategory };
+    // 推荐商品
+    const subList = ref([]);
+    const getSubList = () => {
+      findTopCategory(route.params.id).then((data) => {
+        subList.value = data.result.children;
+      });
+    };
+    watch(
+      () => route.params.id,
+      (newVal) => {
+        newVal && getSubList();
+      },
+      { immediate: true }
+    );
+
+    return { sliders, topCategory, subList };
   },
 };
 </script>
