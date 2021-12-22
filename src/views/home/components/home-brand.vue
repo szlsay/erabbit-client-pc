@@ -23,7 +23,7 @@
         >
           <li v-for="item in brands" :key="item.id">
             <RouterLink to="/">
-              <img :src="item.picture" alt="" />
+              <img v-lazyload="item.picture" alt="" />
             </RouterLink>
           </li>
         </ul>
