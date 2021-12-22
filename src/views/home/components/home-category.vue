@@ -31,7 +31,10 @@
 
     <!-- 弹层 -->
     <div class="layer">
-      <h4>分类推荐 <small>根据您的购买或浏览记录推荐</small></h4>
+      <h4>
+        {{ currCategory && currCategory.id === "brand" ? "品牌" : "分类" }}推荐
+        <small>根据您的购买或浏览记录推荐</small>
+      </h4>
       <ul
         v-if="currCategory && currCategory.goods && currCategory.goods.length"
       >

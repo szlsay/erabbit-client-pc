@@ -6,6 +6,8 @@
         <HomeCategory />
         <!-- 轮播图 -->
         <home-banner></home-banner>
+        <!-- 新鲜好物 -->
+        <HomeNew />
       </div>
     </div>
   </div>
@@ -14,9 +16,10 @@
 <script>
 import HomeCategory from "./components/home-category";
 import HomeBanner from "./components/home-banner.vue";
+import HomeNew from "./components/home-new.vue";
 export default {
   name: "HomePage",
-  components: { HomeCategory, HomeBanner },
+  components: { HomeCategory, HomeBanner, HomeNew },
   setup() {
     return {};
   },
