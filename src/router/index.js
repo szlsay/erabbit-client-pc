@@ -9,7 +9,7 @@ const TopCategory = () =>
 const SubCategory = () =>
   import ('@/views/category/sub')
 const Goods = () =>
-  import ('@/views/goods')
+  import ('@/views/goods/index')
 const routes = [{
   path: '/',
   component: Layout,
