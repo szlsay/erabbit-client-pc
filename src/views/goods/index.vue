@@ -21,6 +21,8 @@
         </div>
         <div class="spec">
           <GoodsName :goods="goods"></GoodsName>
+          <!-- sku组件 skuId="1369155865461919746" 测试选中 -->
+          <GoodsSku :goods="goods" @change="changeSku" />
         </div>
       </div>
       <!-- 商品推荐 -->
@@ -45,15 +47,26 @@ import GoodsRelevant from "./components/goods-relevant";
 import GoodsImage from "./components/goods-image.vue";
 import GoodsSales from "./components/goods-sales.vue";
 import GoodsName from "./components/goods-name";
+import GoodsSku from "./components/goods-sku";
 import { nextTick, ref, watch } from "vue";
 import { findGoods } from "@/api/product";
 import { useRoute } from "vue-router";
 export default {
   name: "XtxGoodsPage",
-  components: { GoodsRelevant, GoodsImage, GoodsSales, GoodsName },
+  components: { GoodsRelevant, GoodsImage, GoodsSales, GoodsName, GoodsSku },
   setup() {
     const goods = useGoods();
-    return { goods };
+    const changeSku = (sku) => {
+      // 修改商品的现价原价库存信息
+      if (sku.skuId) {
+        goods.value.price = sku.price;
+        goods.value.oldPrice = sku.oldPrice;
+        goods.value.inventory = sku.inventory;
+      }
+      // 记录选择后的sku，可能有数据，可能没有数据{}
+      // currSku.value = sku;
+    };
+    return { goods, changeSku };
   },
 };
 // 获取商品详情
