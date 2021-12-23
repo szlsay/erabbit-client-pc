@@ -8,6 +8,8 @@ const TopCategory = () =>
   import ('@/views/category')
 const SubCategory = () =>
   import ('@/views/category/sub')
+const Goods = () =>
+  import ('@/views/goods')
 const routes = [{
   path: '/',
   component: Layout,
@@ -22,6 +24,10 @@ const routes = [{
     {
       path: '/category/sub/:id',
       component: SubCategory
+    },
+    {
+      path: '/product/:id',
+      component: Goods
     }
   ]
 }]
