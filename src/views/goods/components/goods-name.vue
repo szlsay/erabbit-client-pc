@@ -12,7 +12,7 @@
     </dl>
     <dl>
       <dt>配送</dt>
-      <dd>至 <xtx-city></xtx-city></dd>
+      <dd>至 <XtxCity @change="changeCity" :fullLocation="fullLocation" /></dd>
     </dl>
     <dl>
       <dt>服务</dt>
@@ -27,15 +27,41 @@
 </template>
 
 <script>
-import xtxCity from "@/components/library/xtx-city.vue";
+import { ref } from "vue";
 export default {
-  components: { xtxCity },
   name: "GoodName",
   props: {
     goods: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
     },
+  },
+  setup(props) {
+    // 提供给后台的四项数据 (没登录)
+    const provinceCode = ref("110000");
+    const cityCode = ref("119900");
+    const countyCode = ref("110101");
+    const fullLocation = ref("北京市 市辖区 东城区");
+    // 取出用户收货地址中默认的地址给四个数据赋值 (已登录)
+    if (props.goods.userAddresses) {
+      const defaultAddresss = props.goods.userAddresses.find(
+        (item) => item.isDefualt === 1
+      );
+      if (defaultAddresss) {
+        provinceCode.value = defaultAddresss.provinceCode;
+        cityCode.value = defaultAddresss.cityCode;
+        countyCode.value = defaultAddresss.countyCode;
+        fullLocation.value = defaultAddresss.fullLocation;
+      }
+    }
+    // 城市选中事件处理函数
+    const changeCity = (result) => {
+      provinceCode.value = result.provinceCode;
+      cityCode.value = result.cityCode;
+      countyCode.value = result.countyCode;
+      fullLocation.value = result.fullLocation;
+    };
+    return { fullLocation, changeCity };
   },
 };
 </script>
