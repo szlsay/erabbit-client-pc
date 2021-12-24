@@ -30,12 +30,11 @@ const routes = [{
     {
       path: '/product/:id',
       component: Goods
-    },
-    {
-      path: '/login',
-      component: Login
     }
   ]
+}, {
+  path: '/login',
+  component: Login
 }]
 const router = createRouter({
   history: createWebHashHistory(),

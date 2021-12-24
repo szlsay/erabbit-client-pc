@@ -12,7 +12,6 @@
       <template v-else>
         <li>
           <router-link to="/login">请先登录</router-link>
-          <!-- <a href="javascript:;">请先登录</a></li> -->
         </li>
 
         <li><a href="javascript:;">免费注册</a></li>

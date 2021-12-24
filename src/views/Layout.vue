@@ -1,34 +1,41 @@
 <template>
-  <div>
-    <!-- <nav>nav</nav> -->
-    <app-topnav></app-topnav>
-    <app-header></app-header>
-    <app-header-sticky></app-header-sticky>
-    <main><router-view></router-view></main>
-    <app-footer></app-footer>
+  <!-- 顶部通栏 -->
+  <AppNavbar />
+  <!-- 头部组件 -->
+  <AppHeader />
+  <!-- 吸顶头部 -->
+  <AppHeaderSticky />
+  <!-- 内容容器 -->
+  <div class="app-body">
+    <!-- 二级路由 -->
+    <RouterView />
   </div>
+  <!-- 底部组件 -->
+  <AppFooter />
 </template>
-
 <script>
-import AppTopnav from "@/components/app-topnav.vue";
-import AppHeader from "@/components/app-header.vue";
-import AppFooter from "@/components/app-footer.vue";
-import AppHeaderSticky from "@/components/app-header-sticky.vue";
+import AppNavbar from "@/components/app-topnav";
+import AppHeader from "@/components/app-header";
+import AppFooter from "@/components/app-footer";
+import AppHeaderSticky from "@/components/app-header-sticky";
 import { useStore } from "vuex";
 export default {
+  name: "Layout",
   components: {
-    AppTopnav,
+    AppNavbar,
     AppHeader,
     AppFooter,
     AppHeaderSticky,
   },
+  // 获取下分类数据
   setup() {
     const store = useStore();
     store.dispatch("category/getList");
-    return {};
   },
 };
 </script>
-
-<style lang="scss" scoped>
+<style scoped lang="less">
+.app-body {
+  min-height: 600px;
+}
 </style>
