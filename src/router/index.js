@@ -10,6 +10,8 @@ const SubCategory = () =>
   import ('@/views/category/sub')
 const Goods = () =>
   import ('@/views/goods/index')
+const Login = () =>
+  import ('@/views/login/index')
 const routes = [{
   path: '/',
   component: Layout,
@@ -28,6 +30,10 @@ const routes = [{
     {
       path: '/product/:id',
       component: Goods
+    },
+    {
+      path: '/login',
+      component: Login
     }
   ]
 }]
