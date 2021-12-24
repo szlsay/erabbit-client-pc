@@ -25,6 +25,8 @@ const defineDirective = (app) => {
   })
 }
 
+import Message from './Message'
+
 const importFn = require.context('./', false, /\.vue$/)
 export default {
   install(app) {
@@ -38,5 +40,8 @@ export default {
       // app.component(XtxBread.name, XtxBread)
       // app.component(XtxBreadItem.name, XtxBreadItem)
     defineDirective(app)
+
+    // 定义一个原型函数
+    app.config.globalProperties.$message = Message
   }
 }
