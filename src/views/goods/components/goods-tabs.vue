@@ -19,6 +19,7 @@
     <!-- is属性用来决定component动态组件渲染为那个组件，组件的名称 -->
     <!-- <GoodsDetial v-if="activeName === 'GoodsDetial'" />
     <GoodsComment v-if="activeName === 'GoodsComment'" /> -->
+    <!-- <GoodsComment v-if="activeName === 'GoodsComment'" /> -->
     <component :is="activeName"></component>
   </div>
 </template>
