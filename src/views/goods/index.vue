@@ -23,6 +23,8 @@
           <GoodsName :goods="goods"></GoodsName>
           <!-- sku组件 skuId="1369155865461919746" 测试选中 -->
           <GoodsSku :goods="goods" @change="changeSku" />
+          <!-- 数量选择组件 -->
+          <XtxNumbox label="数量" v-model="num" :max="goods.inventory" />
         </div>
       </div>
       <!-- 商品推荐 -->
@@ -66,7 +68,9 @@ export default {
       // 记录选择后的sku，可能有数据，可能没有数据{}
       // currSku.value = sku;
     };
-    return { goods, changeSku };
+    // 选择的数量
+    const num = ref(1);
+    return { goods, changeSku, num };
   },
 };
 // 获取商品详情
