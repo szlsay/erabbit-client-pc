@@ -12,6 +12,8 @@ const Goods = () =>
   import ('@/views/goods/index')
 const Login = () =>
   import ('@/views/login/index')
+const LoginCallback = () =>
+  import ('@/views/login/callback')
 const routes = [{
   path: '/',
   component: Layout,
@@ -35,7 +37,7 @@ const routes = [{
 }, {
   path: '/login',
   component: Login
-}]
+}, { path: '/login/callback', component: LoginCallback }]
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
